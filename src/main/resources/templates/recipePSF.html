@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Gestion de stock</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel= "stylesheet"
+          type ="text/css"
+          href= "../static/css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}"
+    />
+    <link rel= "stylesheet"
+          type ="text/css"
+          href= "../static/css/style.css"
+          th:href="@{css/style.css}"
+    />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container spacer">
+        <div class="panel panel-default">
+            <div class ="panel-heading">Current PSF</div>
+            <div class= "panel-body">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <label th:text="${current.id}"></label>
+                </div>
+                <div class="form-group">
+                    <label>Désignation:</label>
+                    <label th:text="${current.designation}"></label>
+                </div>
+                <div class="form-group">
+                    <label>Quantité:</label>
+                    <label th:text="${current.stock}"></label>
+                </div>
+                <div class="form-group">
+                    <label>Quantité:</label>
+                    <label th:text="${current.stockSec}"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class ="container spacer">
+    <table class ="table table-dark">
+        <thead>
+        <tr>
+            <th>ID</th><th>Désignation</th><th>Stock</th>
+        </thead>
+        <tbody>
+        <tr th:each="cmp:${mps}">
+            <td th:text="${cmp.id}" ></td>
+            <td th:text="${cmp.designation}" ></td>
+            <td th:text="${cmp.stock}" ></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class ="container spacer">
+    <table class ="table table-dark">
+        <thead>
+        <tr>
+            <th>ID</th><th>Désignation</th><th>Stock</th>
+
+        </thead>
+        <tbody>
+        <tr th:each="cpsf:${psfs}">
+            <td th:text="${cpsf.id}" ></td>
+            <td th:text="${cpsf.designation}" ></td>
+            <td th:text="${cpsf.stock}" ></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <div>
+        <a th:href="@{addPSF(id=${current.id})}" class="btn btn-default">add PSF</a>
+        <a th:href="@{addMP(id=${current.id})}" class="btn btn-default">add MP</a>
+    </div>
+</div>
+</div>
+</body>
+</html>
